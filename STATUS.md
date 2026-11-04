@@ -5,7 +5,7 @@
 - [x] 1. Repo scaffold
 - [x] 2. Mockup rendering
 - [x] 3. Design system
-- [ ] 4. Config + RNG + ledger
+- [x] 4. Config + RNG + ledger
 - [ ] 5. Data model
 - [ ] 6. Founder and VC agents
 - [ ] 7. World and news
