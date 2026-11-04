@@ -9,6 +9,7 @@ import { agentPost, createCard, notify } from "./social";
 import type { Company, Deal, Fund, Offer, Pitch, PitchReaction, World } from "./types";
 import { companyAccount, dryPowder, fundAccount, nextId, sector } from "./world";
 import { bumpFeud } from "./feuds";
+import { afterRound } from "./funds";
 
 export async function createOfferFromPitch(w: World, cfg: GameConfig, c: Company, f: Fund, pitch: Pitch, r: PitchReaction, tick: number): Promise<Offer> {
   const id = nextId(w, "offer");
@@ -131,6 +132,7 @@ export async function acceptOffer(w: World, cfg: GameConfig, o: Offer, tick: num
   };
   w.deals.set(deal.id, deal);
   f.paidIn += o.check;
+  afterRound(w, cfg, c, o, tick);
   w.season.checksBySector[c.sector] = (w.season.checksBySector[c.sector] ?? 0) + 1;
   if (!c.leadFundId) c.leadFundId = f.id;
   c.rounds += 1;

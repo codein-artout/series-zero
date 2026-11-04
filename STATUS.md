@@ -13,7 +13,7 @@
 - [x] 9. Term sheets and negotiation
 - [x] 10. Company simulation
 - [x] 11. Valuation and outcome ladder
-- [ ] 12. VC simulation and scoring
+- [x] 12. VC simulation and scoring
 - [ ] 13. Tick engine
 - [ ] 14. Social layer
 - [ ] 15. Safety
