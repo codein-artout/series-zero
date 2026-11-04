@@ -87,7 +87,7 @@ export function PitchReplay({ d }: { d: ReplayData }) {
             </div>
           </div>
           <p style={{ fontSize: 15 }} dangerouslySetInnerHTML={{ __html: d.pitchLine }} />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 8 }}>
+          <div className="hide-phone" style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 8 }}>
             {d.slides.map((s, i) => (
               <div key={i} className="paper" style={{ padding: "10px 12px", minHeight: 70 }}>
                 <div className="lbl">Slide {i + 1}</div>

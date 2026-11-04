@@ -35,7 +35,7 @@ export default async function FloorPage() {
 
   return (
     <Page active="floor">
-      <div className="row" style={{ justifyContent: "space-between", flexWrap: "wrap", alignItems: "flex-end" }}>
+      <div className="row floor-head" style={{ justifyContent: "space-between", flexWrap: "wrap", alignItems: "flex-end" }}>
         <div>
           <div className="lbl">
             Season {w.season.number} · Tick {w.season.tick} of {total}
@@ -44,7 +44,7 @@ export default async function FloorPage() {
             The Floor
           </h1>
         </div>
-        <div className="card" style={{ padding: "12px 18px", display: "flex", gap: 18, alignItems: "center" }}>
+        <div className="card next-tick" style={{ padding: "12px 18px", display: "flex", gap: 18, alignItems: "center" }}>
           <div>
             <div className="lbl">Next tick in</div>
             <Countdown className="num br" style={{ fontSize: 24, fontWeight: 600 }} target={target} initial={fmtCountdown(target - Date.now())} />

@@ -291,3 +291,9 @@ a.chip:hover, button.chip:hover { color: var(--tx); }
 @media (max-width: 639px) {
   .hero-title { font-size: 46px !important; }
 }
+@media (max-width: 639px) {
+  .floor-head { flex-wrap: nowrap !important; }
+  .next-tick { background: transparent; border: 0; padding: 0 !important; text-align: right; }
+  .next-tick .num { font-size: 20px !important; }
+  .tape { font-size: 11px; }
+}
