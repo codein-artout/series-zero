@@ -376,6 +376,17 @@ export interface Draft {
   tick: number;
 }
 
+export type CardKind = "term_sheet" | "roast" | "exit";
+
+export interface CardRecord {
+  id: Id;
+  kind: CardKind;
+  refId: Id;
+  ownerId: Id | null;
+  tick: number;
+  data: Record<string, string | number>;
+}
+
 export interface DemoDayEntry {
   rank: number;
   companyId: Id;
@@ -454,6 +465,7 @@ export interface Appended {
   ideas: Idea[];
   ticks: TickRecord[];
   drafts: Draft[];
+  cards: CardRecord[];
 }
 
 export interface World {
@@ -480,5 +492,5 @@ export interface World {
 }
 
 export function emptyAppended(): Appended {
-  return { pitches: [], events: [], posts: [], notifications: [], ledger: [], marks: [], demoDays: [], ideas: [], ticks: [], drafts: [] };
+  return { pitches: [], events: [], posts: [], notifications: [], ledger: [], marks: [], demoDays: [], ideas: [], ticks: [], drafts: [], cards: [] };
 }

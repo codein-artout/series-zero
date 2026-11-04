@@ -9,8 +9,8 @@
 - [x] 5. Data model
 - [x] 6. Founder and VC agents
 - [x] 7. World and news
-- [ ] 8. Pitch pipeline
-- [ ] 9. Term sheets and negotiation
+- [x] 8. Pitch pipeline
+- [x] 9. Term sheets and negotiation
 - [ ] 10. Company simulation
 - [ ] 11. Valuation and outcome ladder
 - [ ] 12. VC simulation and scoring

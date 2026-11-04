@@ -240,5 +240,6 @@ async function writeWorld(q: SqlExec, world: World, entries: ReturnType<Ledger["
     ["seasonId", "number"],
     [],
   );
+  await bulkUpsert(q, "Card", ["id", "kind", "refId", "ownerId", "data"], ap.cards.map((c) => [c.id, c.kind, c.refId, c.ownerId, json({ ...c.data, tick: c.tick })]), ["id"], []);
   await bulkUpsert(q, "Draft", ["id", "agentId", "agentType", "ownerId", "status", "text", "tick"], ap.drafts.map((d) => [d.id, d.agentId, d.agentType, d.ownerId, d.status, d.text, d.tick]), ["id"], []);
 }
