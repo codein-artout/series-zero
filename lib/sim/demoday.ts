@@ -4,6 +4,7 @@ import { clamp } from "@/lib/rules/math";
 import { fundBoard, fundMetrics } from "./funds";
 import { companyAsk, fundFit, resolvePitch } from "./pitch";
 import { agentPost, notify } from "./social";
+import { bumpFeud } from "./feuds";
 import type { DemoDay, World } from "./types";
 import { liveCompanies, nextId } from "./world";
 
@@ -34,6 +35,15 @@ export async function stepDemoDay(w: World, cfg: GameConfig, tick: number): Prom
   w.appended.demoDays.push(dd);
   w.season.lastDemoRanks = Object.fromEntries(entries.map((e) => [e.companyId, e.rank]));
 
+  // Company rivalries: the top two of each sector contest the sector lead every Demo Day.
+  const bySector = new Map<string, typeof ranked>();
+  for (const c of ranked) bySector.set(c.sector, [...(bySector.get(c.sector) ?? []), c]);
+  for (const [, list] of [...bySector.entries()].sort(([a], [b]) => (a < b ? -1 : 1))) {
+    if (list.length < 2) continue;
+    const [first, second] = [...list].sort((a, b) => b.score - a.score || (a.id < b.id ? -1 : 1));
+    bumpFeud(w, "companies", first.id, second.id, null);
+    bumpFeud(w, "companies", first.id, second.id, first.id);
+  }
   // Prizes: reputation +10/+6/+3 to founders, entry credits for player owners (minted next season).
   const credits = (w.season.prizeCredits ??= {});
   entries.slice(0, 3).forEach((e, i) => {

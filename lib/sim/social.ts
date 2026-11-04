@@ -46,7 +46,7 @@ export async function agentPost(w: World, cfg: GameConfig, tick: number, s: Post
   if (!text) return null;
   const mod = await moderate(text, `post:${s.kind}`);
   if (!mod.allowed && !system) return null;
-  return addPost(w, {
+  const post = addPost(w, {
     tick,
     authorType: s.authorType,
     authorId: s.authorId,
@@ -59,6 +59,12 @@ export async function agentPost(w: World, cfg: GameConfig, tick: number, s: Post
     salience: s.salience,
     fine: s.fine ?? 0,
   });
+  // Player-owned agents also queue a draft for outside platforms (log only, needs owner approval).
+  const ownerId = s.authorType === "founder" ? w.founders.get(s.authorId ?? "")?.ownerId : s.authorType === "vc" ? w.funds.get(s.authorId ?? "")?.ownerId : null;
+  if (ownerId && s.authorId) {
+    w.appended.drafts.push({ id: nextId(w, "draft"), agentId: s.authorId, agentType: s.authorType === "vc" ? "vc" : "founder", ownerId, text: post.text, status: "pending", tick });
+  }
+  return post;
 }
 
 /** Card ids are unguessable during the season: derived from the secret season seed. */

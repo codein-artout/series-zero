@@ -15,7 +15,7 @@
 - [x] 11. Valuation and outcome ladder
 - [x] 12. VC simulation and scoring
 - [x] 13. Tick engine
-- [ ] 14. Social layer
+- [x] 14. Social layer
 - [ ] 15. Safety
 - [ ] 16. Screens, desktop
 - [ ] 17. Phone layouts and shareable cards
