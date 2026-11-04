@@ -12,7 +12,7 @@
 - [x] 8. Pitch pipeline
 - [x] 9. Term sheets and negotiation
 - [x] 10. Company simulation
-- [ ] 11. Valuation and outcome ladder
+- [x] 11. Valuation and outcome ladder
 - [ ] 12. VC simulation and scoring
 - [ ] 13. Tick engine
 - [ ] 14. Social layer
