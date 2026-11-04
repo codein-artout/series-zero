@@ -3,7 +3,7 @@
 ## Milestones
 
 - [x] 1. Repo scaffold
-- [ ] 2. Mockup rendering
+- [x] 2. Mockup rendering
 - [ ] 3. Design system
 - [ ] 4. Config + RNG + ledger
 - [ ] 5. Data model
