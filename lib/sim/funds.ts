@@ -104,15 +104,17 @@ export function afterRound(w: World, cfg: GameConfig, c: Company, o: Offer, tick
 // ---------- Player deal flow: take 1 of 3 meetings ----------
 
 export function meetingCandidates(w: World, cfg: GameConfig, f: Fund, tick: number): Company[] {
-  return liveCompanies(w)
+  const all = liveCompanies(w)
     .filter((c) => {
       const owner = w.founders.get(c.founderId)?.ownerId ?? null;
       return !(owner && owner === f.ownerId);
     })
     .filter((c) => (c.lastPitchByFund[f.id] ?? -1e9) <= tick - cfg.pitch.cooldownTicks)
     .sort((a, b) => fundFit(w, cfg, f, b, companyAsk(w, cfg, b)) - fundFit(w, cfg, f, a, companyAsk(w, cfg, a)) || (a.id < b.id ? -1 : 1))
-    .filter((c) => c.raising || c.rounds === 0)
-    .slice(0, cfg.vc.dealFlowPerTick);
+    .slice();
+  const raising = all.filter((c) => c.raising || c.rounds === 0);
+  // When nobody is actively raising, the deal flow falls back to any eligible company.
+  return (raising.length ? raising : all).slice(0, cfg.vc.dealFlowPerTick);
 }
 
 export function stepMeetings(w: World, cfg: GameConfig, tick: number): void {

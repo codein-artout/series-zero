@@ -8,6 +8,7 @@ import { createAcquirer, createCompany, createNpcFounder, createNpcFund, generat
 import { runTick, type TickSummary } from "./engine";
 import { createWorld } from "./genesis";
 import { resolvePitch } from "./pitch";
+import { stepMeetings } from "./funds";
 import { stepRestarts } from "./spawn";
 import type { World } from "./types";
 import { walletAccount } from "./world";
@@ -100,5 +101,17 @@ export async function buildSeedWorld(cfg: GameConfig, seed: string, opts: SeedOp
     const rec = await runTick(w, cfg);
     if (opts.onTick) await opts.onTick(rec, w);
   }
+  if (opts.demo) await ensureDemoCalls(w, cfg);
   return w;
+}
+
+/** The demo player opens the app with live calls: Mulch pitches now if it has no open offer. */
+export async function ensureDemoCalls(w: World, cfg: GameConfig): Promise<void> {
+  const tick = w.season.tick;
+  const ines = [...w.founders.values()].find((f) => f.ownerId === DEMO_USER_ID);
+  const mulch = ines?.companyId ? w.companies.get(ines.companyId) : null;
+  if (mulch && (mulch.status === "alive" || mulch.status === "zombie") && ![...w.offers.values()].some((o) => o.companyId === mulch.id && o.status === "open")) {
+    await resolvePitch(w, cfg, mulch, tick, { source: "player" });
+  }
+  stepMeetings(w, cfg, tick);
 }
