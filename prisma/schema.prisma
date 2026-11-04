@@ -21,6 +21,8 @@ model User {
   image         String?
   isGuest       Boolean   @default(false)
   isAdmin       Boolean   @default(false)
+  /// Salted hash of the creating IP, for same-IP cluster review (sybil flags).
+  ipHash        String?
   createdAt     DateTime  @default(now())
   accounts      Account[]
 }

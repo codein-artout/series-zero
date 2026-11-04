@@ -99,7 +99,7 @@ export async function generateIdea(
   cfg: GameConfig,
   founder: FounderAgent,
   tick: number,
-  opts: { stage: Stage; sectorHint?: SectorId; allowedSectors?: SectorId[]; pivotFrom?: Idea; source: Idea["source"] },
+  opts: { stage: Stage; sectorHint?: SectorId; allowedSectors?: SectorId[]; pivotFrom?: Idea; source: Idea["source"]; oneLinerOverride?: string },
 ): Promise<GeneratedIdea> {
   const growth = allSectorGrowth(w, cfg);
   const used = usedNames(w);
@@ -125,7 +125,7 @@ export async function generateIdea(
   const ideaId = nextId(w, "idea");
   const { value, meta } = await callStructured("idea", IdeaOutput, input, `${founder.id}|${tick}|${opts.source}|${ideaId}`);
   const sectorId = (opts.allowedSectors && !opts.allowedSectors.includes(value.sector) ? opts.allowedSectors[0] : value.sector) as SectorId;
-  const oneLiner = cleanField(value.oneLiner, cfg.idea.oneLinerMax);
+  const oneLiner = cleanField(opts.oneLinerOverride ?? value.oneLiner, cfg.idea.oneLinerMax);
   const customer = cleanField(value.customer, cfg.idea.customerMax);
   const problem = cleanField(value.problem, cfg.idea.problemMax);
   const solution = cleanField(value.solution, cfg.idea.solutionMax);

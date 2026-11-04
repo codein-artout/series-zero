@@ -28,15 +28,20 @@ const HOMOGLYPHS: Record<string, string> = {
 const ZERO_WIDTH_BIDI = /[​-‏‪-‮⁠-⁤⁦-⁩﻿­]/;
 const ZERO_WIDTH_BIDI_G = /[​-‏‪-‮⁠-⁤⁦-⁩﻿­]/g;
 
-export function normalizeForDetection(raw: string): string {
+function plainNormalize(raw: string): string {
   let s = raw.normalize("NFKC").replace(ZERO_WIDTH_BIDI_G, "");
   s = [...s].map((ch) => HOMOGLYPHS[ch] ?? ch).join("");
   s = s.toLowerCase();
-  // Leetspeak for letters commonly swapped in instruction words.
-  const leet = s.replace(/[0]/g, "o").replace(/[1!|]/g, "i").replace(/[3]/g, "e").replace(/[4@]/g, "a").replace(/[5$]/g, "s").replace(/[7]/g, "t");
   // Re-join spaced-out letters: "i g n o r e" -> "ignore"; "i.g.n.o.r.e" -> "ignore".
-  const joined = leet.replace(/\b(?:[a-z][\s._\-*]){3,}[a-z]\b/g, (m) => m.replace(/[\s._\-*]/g, ""));
-  return joined.replace(/\s+/g, " ").trim();
+  s = s.replace(/\b(?:[a-z][\s._\-*]){3,}[a-z]\b/g, (m) => m.replace(/[\s._\-*]/g, ""));
+  return s.replace(/[ \t]+/g, " ").trim();
+}
+
+/** Plain and leetspeak-folded forms, joined so every rule sees both. */
+export function normalizeForDetection(raw: string): string {
+  const plain = plainNormalize(raw);
+  const leet = plainNormalize(raw.replace(/[0]/g, "o").replace(/[1!|]/g, "i").replace(/[3]/g, "e").replace(/[4@]/g, "a").replace(/[5$]/g, "s").replace(/[7]/g, "t"));
+  return leet === plain ? plain : `${plain}\n${leet}`;
 }
 
 const any = (...res: RegExp[]) => (n: string) => res.some((r) => r.test(n));
@@ -69,6 +74,9 @@ const RULES: Rule[] = [
       /\b(set|make) (the )?(interest|score|rubric|probability|roll|fit)\b[^.]{0,20}\b(to|=|at)\b/,
       /\b(interest|p\(offer\)|probability)\s*[:=]\s*(1(\.0+)?|100%?)\b/,
       /\bmaximum (score|interest|rating)\b/,
+      /\b(offer|approved|funded|approve)\s*[:=]\s*(true|yes|1)\b/,
+      /\b(mark|flag|treat) (this|it|us|me|the (pitch|company))? ?(as )?(approved|funded|an offer)\b/,
+      /\b(already|pre-?)(been )?approved\b/,
       /\b(all|every) (vcs?|investors?|judges?) (must|will|should) (offer|fund|invest)\b/,
     ),
   },
@@ -101,7 +109,7 @@ const RULES: Rule[] = [
   { id: "encoded_block", weight: 0.5, test: (_n, raw) => /[A-Za-z0-9+/]{48,}={0,2}/.test(raw) || /\b(?:[0-9a-f]{2}){32,}\b/i.test(raw) || /\b(base64|rot13|decode this|hex[- ]encoded)\b/i.test(raw) },
   { id: "zero_width_bidi", weight: 0.5, test: (_n, raw) => ZERO_WIDTH_BIDI.test(raw) },
   { id: "markup", weight: 0.35, test: (_n, raw) => /<\/?[a-z][a-z0-9-]*(\s[^<>]*)?>/i.test(raw) || /<script|javascript:|onerror\s*=|<iframe|<img/i.test(raw) },
-  { id: "model_address", weight: 0.35, test: any(/\b(dear|attention|note to|hey) (ai|model|llm|judge|assistant|claude|gpt|panel bot)\b/, /\bas an ai (language )?model\b/, /\b(language model|llm)s? (reading|processing) this\b/) },
+  { id: "model_address", weight: 0.35, test: any(/\b(dear|attention|note to|hey|to) (the )?(ai|model|llm|judge|assistant|claude|gpt|panel bot)\b/, /\bas an ai (language )?model\b/, /\b(language model|llm)s? (reading|processing) this\b/) },
 ];
 
 export interface DetectorThresholds {
