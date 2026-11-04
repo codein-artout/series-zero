@@ -1,0 +1,24 @@
+{
+  "_note": "Blocklist used by the real-name guard (GAME.md section 18). Names here must never appear as agents, companies, funds or acquirers. This list is a guard, not game content.",
+  "firms": [
+    "Sequoia", "Sequoia Capital", "Andreessen Horowitz", "a16z", "Accel", "Benchmark Capital", "Kleiner Perkins", "Greylock", "Index Ventures",
+    "Lightspeed", "Founders Fund", "Y Combinator", "YCombinator", "Tiger Global", "SoftBank", "Vision Fund", "Insight Partners", "General Catalyst",
+    "Khosla Ventures", "New Enterprise Associates", "Bessemer", "Coatue", "Thrive Capital", "Ribbit Capital", "Union Square Ventures", "First Round Capital",
+    "Initialized Capital", "Balderton", "Atomico", "Northzone", "Kinnevik", "Peak XV", "Blume Ventures", "Elevation Capital", "Matrix Partners", "Nexus Venture",
+    "Goldman Sachs", "JPMorgan", "J.P. Morgan", "Morgan Stanley", "BlackRock", "Berkshire Hathaway", "Citadel", "Bridgewater", "Fidelity", "Vanguard"
+  ],
+  "brands": [
+    "Google", "Alphabet", "Apple", "Microsoft", "Amazon", "Meta", "Facebook", "Instagram", "WhatsApp", "Netflix", "Tesla", "SpaceX", "OpenAI", "Anthropic",
+    "Nvidia", "Intel", "IBM", "Oracle", "Salesforce", "Stripe", "Uber", "Airbnb", "Twitter", "ByteDance", "TikTok", "Shopify", "Spotify", "PayPal", "Visa",
+    "Mastercard", "Samsung", "Sony", "Tencent", "Alibaba", "Baidu", "Infosys", "Reliance", "Tata", "Wipro", "Flipkart", "Paytm", "Zomato", "Swiggy", "Byju's",
+    "Coinbase", "Binance", "FTX", "Theranos", "WeWork", "DeepMind", "Palantir", "Snowflake", "Databricks", "Figma", "Notion", "Slack", "Zoom", "Adobe",
+    "Siemens", "Toyota", "Boeing", "Lockheed", "Pfizer", "Moderna", "Revolut", "Klarna", "Monzo", "Robinhood", "Nubank", "Canva", "Atlassian", "Grab", "Gojek"
+  ],
+  "people": [
+    "Elon Musk", "Jeff Bezos", "Mark Zuckerberg", "Bill Gates", "Sam Altman", "Peter Thiel", "Marc Andreessen", "Reid Hoffman", "Warren Buffett", "Tim Cook",
+    "Sundar Pichai", "Satya Nadella", "Jensen Huang", "Larry Page", "Sergey Brin", "Steve Jobs", "Paul Graham", "Masayoshi Son", "Dario Amodei", "Jack Dorsey",
+    "Brian Chesky", "Travis Kalanick", "Vitalik Buterin", "Changpeng Zhao", "Sam Bankman-Fried", "Elizabeth Holmes", "Adam Neumann", "Mukesh Ambani",
+    "Ratan Tata", "Narayana Murthy", "Jack Ma", "Pony Ma", "Larry Ellison", "Michael Dell", "Doug Leone", "Ben Horowitz", "Vinod Khosla", "Chamath Palihapitiya",
+    "Cathie Wood", "Jamie Dimon", "Ray Dalio", "Ken Griffin", "Patrick Collison", "John Collison", "Whitney Wolfe Herd", "Melanie Perkins", "Kiran Mazumdar-Shaw"
+  ]
+}
