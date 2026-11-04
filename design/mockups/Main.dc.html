@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Series Zero landing</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./sz.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..900;1,6..96,500..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="sz" style="min-height: 1280px">
+  <div class="tape" aria-label="Live ticker">
+    <span><b>MULCH</b> §9.2M <em class="up" style="font-style: normal">▲ 18.4%</em></span>
+    <span><b>TESSELLATE</b> §214M <em class="up" style="font-style: normal">▲ 3.1%</em></span>
+    <span><b>HALFPINT</b> §1.1M <em class="dn" style="font-style: normal">▼ 41.0%</em></span>
+    <span><b>HYPE INDEX</b> 72 <em class="up" style="font-style: normal">▲ 4</em></span>
+    <span><b>BRIGHTLINE</b> MOIC 1.9x</span>
+    <span><b>CLIMATE POOL</b> §48.2M <em class="up" style="font-style: normal">▲ 6.4%</em></span>
+    <span><b>GREYWETHER</b> passed on 4 of 5</span>
+  </div>
+
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 56px; border-bottom: 1px solid var(--line)">
+    <div class="logo"><i>0</i>Series Zero</div>
+    <div class="row" style="gap: 28px">
+      <a class="lbl" href="World.dc.html">The Floor</a>
+      <a class="lbl" href="DemoDay.dc.html">Demo Day</a>
+      <a class="lbl" href="Gossip.dc.html">The Wire</a>
+      <a class="btn ghost" href="Create.dc.html" style="min-height: 40px">Sign in</a>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; padding: 56px 56px 40px">
+    <div style="flex: 1 1 580px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+      <span class="chip br" style="align-self: flex-start">Season 3 · Tick 214 · Simulation</span>
+      <h1 class="h1" style="font-size: 76px">Pitch it.<br>Get funded.<br><span class="it" style="color: var(--brass2)">Or get stamped.</span></h1>
+      <p style="max-width: 520px; font-size: 18px; color: var(--mut)">Describe your startup in one line. A fictional founder agent spawns in ten seconds and pitches a panel of VC agents. Every rejection is public.</p>
+      <form class="card" style="max-width: 560px; display: flex; flex-direction: column; gap: 14px">
+        <label class="lbl" for="idea">Your startup, one sentence</label>
+        <textarea id="idea" class="field" rows="3">Soil-sensing drones that tell smallholder farms when to irrigate, sold as a per-acre subscription.</textarea>
+        <label class="lbl" for="url">Optional: a URL (we read the title and description only)</label>
+        <input id="url" class="field" type="text" value="https://">
+        <div class="row" style="gap: 12px; flex-wrap: wrap">
+          <a class="btn" href="PitchRoom.dc.html">Spawn my founder</a>
+          <a class="btn ghost" href="World.dc.html">Watch the floor first</a>
+        </div>
+        <p class="legal">Your founder is fictional and so are the funds. Simulation, not investment advice.</p>
+      </form>
+    </div>
+
+    <div style="flex: 1 1 440px; min-width: 0; position: relative; min-height: 560px">
+      <div class="card" style="position: absolute; left: 0; top: 150px; width: 330px; transform: rotate(-5deg); background: #1A1210; border-color: #5A2A22">
+        <div class="lbl" style="color: var(--red)">Passed · Greywether Partners</div>
+        <p class="h3" style="margin-top: 10px; font-style: italic; font-weight: 500">"Your moat is a hobby. Come back with a customer."</p>
+        <div class="row" style="margin-top: 14px; justify-content: space-between"><span class="chip dn">Interest 0.18</span><span class="stamp" style="transform: rotate(-4deg); font-size: 13px">Passed</span></div>
+      </div>
+      <div class="paper" style="position: absolute; right: 0; top: 0; width: 380px; padding: 28px 28px 24px; transform: rotate(2.5deg)">
+        <div class="lbl">Term sheet · Series Zero · Season 3</div>
+        <div class="h2" style="margin-top: 10px">Brightline Capital<br><span class="it">invests in Mulch</span></div>
+        <hr class="hair" style="margin: 16px 0">
+        <table class="tbl num" style="font-size: 13px">
+          <tr><td class="mut">Pre-money</td><td class="r">§8,000,000</td></tr>
+          <tr><td class="mut">Check</td><td class="r">§1,200,000</td></tr>
+          <tr><td class="mut">Ownership</td><td class="r">13.0%</td></tr>
+          <tr><td class="mut">Liquidation pref</td><td class="r">1x non-participating</td></tr>
+        </table>
+        <div class="row" style="margin-top: 18px; justify-content: space-between">
+          <div style="font-family: var(--disp); font-style: italic; font-size: 22px; color: var(--pen)">I. Calloway</div>
+          <span class="stamp ok" style="font-size: 14px">Funded</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 24px 56px 8px">
+    <div class="lbl" style="margin-bottom: 14px">How a round works</div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+      <div class="card"><div class="num br" style="font-size: 13px">01</div><h3 class="h3" style="margin: 8px 0 6px">Describe</h3><p class="mut" style="font-size: 14px">One sentence. We turn it into a founder with DNA: background, obsessions, ethics, risk appetite.</p></div>
+      <div class="card"><div class="num br" style="font-size: 13px">02</div><h3 class="h3" style="margin: 8px 0 6px">Pitch</h3><p class="mut" style="font-size: 14px">Your founder pitches three VC agents, each with its own thesis and temper.</p></div>
+      <div class="card"><div class="num br" style="font-size: 13px">03</div><h3 class="h3" style="margin: 8px 0 6px">Decide</h3><p class="mut" style="font-size: 14px">Three ticks a day. A few calls are yours: take a term sheet, veto a pivot, rewrite the DNA.</p></div>
+      <div class="card"><div class="num br" style="font-size: 13px">04</div><h3 class="h3" style="margin: 8px 0 6px">Survive</h3><p class="mut" style="font-size: 14px">Beat your sector on growth, scale and efficiency. Demo Day is Friday. Runway is not negotiable.</p></div>
+    </div>
+  </div>
+
+  <div style="padding: 28px 56px 36px">
+    <div class="row" style="justify-content: space-between; margin-bottom: 14px"><div class="lbl">Recent verdicts</div><a class="lbl br" href="Gossip.dc.html">Read the Wire →</a></div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+      <div class="card"><span class="chip up">Funded</span><p style="margin-top: 10px">Atlas &amp; Ash led a §3.4M seed into <b>Tessera</b>, a compliance layer for model providers.</p><div class="legal" style="margin-top: 10px">Tick 213</div></div>
+      <div class="card"><span class="chip dn">Crash</span><p style="margin-top: 10px"><b>Halfpint</b> lost 41% in one tick after two pivots in one season. Lead investor: nobody.</p><div class="legal" style="margin-top: 10px">Tick 212</div></div>
+      <div class="card"><span class="chip br">Exit</span><p style="margin-top: 10px"><b>Tessellate Labs</b> acquired by Monolith Corp for §214M. Greywether books 11.2x.</p><div class="legal" style="margin-top: 10px">Tick 210</div></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1280}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Series Zero phone pitch room</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./sz.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..900;1,6..96,500..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="sz" style="width: 390px; min-height: 1240px; display: flex; flex-direction: column">
+  <div class="tape" aria-label="Live ticker">
+    <span><b>SEED ROUND</b> Tick 214</span>
+    <span><b>BEAT</b> 5 of 5</span>
+    <span><b>HYPE</b> 72</span>
+  </div>
+  <div style="padding: 20px 20px 0; flex: 1; display: flex; flex-direction: column; gap: 16px">
+    <div><div class="lbl">Verdict</div><h1 class="h1" style="font-size: 40px; margin-top: 4px">The <span class="it">Pitch Room</span></h1></div>
+
+    <div class="card spot" style="display: flex; gap: 14px; align-items: center; padding: 14px 16px">
+      <span class="mk" style="width: 52px; height: 52px; font-size: 20px">IC</span>
+      <div><div class="h3">Ines Calloway · Mulch</div><div class="mut" style="font-size: 14px">Asking <span class="num br">§1.2M</span> on <span class="num br">§8.0M</span> pre</div></div>
+    </div>
+
+    <section aria-label="Panel" style="display: flex; flex-direction: column; gap: 10px">
+      <div class="lbl">The panel</div>
+      <div class="card" style="background: var(--s2); padding: 14px 16px">
+        <div class="row" style="justify-content: space-between"><b>Brightline Capital</b><span class="chip br" style="height: 20px">Hype chaser</span></div>
+        <p style="font-family: var(--disp); font-size: 18px; line-height: 1.25; margin: 8px 0">"Drones plus soil data is the story everyone wants. I would move today."</p>
+        <span class="chip up">Interest 0.82</span>
+      </div>
+      <div class="card" style="background: var(--s2); padding: 14px 16px">
+        <div class="row" style="justify-content: space-between"><b>Greywether Partners</b><span class="chip" style="height: 20px">Skeptic</span></div>
+        <p style="font-family: var(--disp); font-size: 18px; line-height: 1.25; margin: 8px 0">"What does a farmer pay, and why do they renew in year two?"</p>
+        <span class="chip dn">Interest 0.41</span>
+      </div>
+      <div class="card" style="background: var(--s2); padding: 14px 16px">
+        <div class="row" style="justify-content: space-between"><b>Atlas &amp; Ash</b><span class="chip" style="height: 20px">Thesis</span></div>
+        <p style="font-family: var(--disp); font-size: 18px; line-height: 1.25; margin: 8px 0">"Hardware at seed is outside our thesis. A warm pass."</p>
+        <span class="chip dn">Interest 0.22</span>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Seeded roll" style="padding: 16px">
+      <div class="lbl">Seeded roll · the model never decides</div>
+      <table class="tbl num" style="margin-top: 6px; font-size: 13px">
+        <thead><tr><th>Fund</th><th class="r">P</th><th class="r">Roll</th><th class="r">Result</th></tr></thead>
+        <tbody>
+          <tr><td>Brightline</td><td class="r">0.61</td><td class="r">0.31</td><td class="r up">OFFER</td></tr>
+          <tr><td>Greywether</td><td class="r">0.25</td><td class="r">0.77</td><td class="r dn">PASS</td></tr>
+          <tr><td>Atlas &amp; Ash</td><td class="r">0.07</td><td class="r">0.64</td><td class="r dn">PASS</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="paper" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+      <div class="h2" style="font-size: 26px">One term sheet,<br><span class="it">two stamps.</span></div>
+      <div class="row" style="gap: 10px; flex-wrap: wrap"><span class="stamp ok" style="font-size: 12px">Term sheet</span><span class="stamp" style="font-size: 12px; transform: rotate(3deg)">Passed ×2</span></div>
+      <a class="btn" href="TermSheet.dc.html" style="width: 100%">Open the offer</a>
+    </div>
+    <p class="legal" style="padding-bottom: 8px">Pitch text is data. Meta-instructions detected: 0.</p>
+  </div>
+  <nav class="tabs" aria-label="Main">
+    <a href="M-World.dc.html">Floor</a>
+    <a href="M-Pitch.dc.html" class="on">Pitch</a>
+    <a href="M-Company.dc.html">Founder</a>
+    <a href="Gossip.dc.html">Wire</a>
+    <a href="DemoDay.dc.html">Demo</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1240}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

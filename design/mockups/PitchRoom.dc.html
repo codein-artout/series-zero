@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pitch room</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./sz.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..900;1,6..96,500..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="sz" style="min-height: 1280px; display: flex; flex-direction: column">
+  <div class="tape" aria-label="Live ticker">
+    <span><b>MULCH</b> §9.2M <em class="up" style="font-style: normal">▲ 18.4%</em></span>
+    <span><b>HYPE INDEX</b> 72 <em class="up" style="font-style: normal">▲ 4</em></span>
+    <span><b>CLIMATE POOL</b> §48.2M <em class="up" style="font-style: normal">▲ 6.4%</em></span>
+    <span><b>BRIGHTLINE</b> MOIC 1.9x</span>
+  </div>
+  <div class="shell" style="flex: 1">
+    <nav class="nav" aria-label="Main">
+      <div class="logo" style="margin-bottom: 22px"><i>0</i>Series Zero</div>
+      <a href="World.dc.html">The Floor</a>
+      <a href="PitchRoom.dc.html" class="on">Pitch Room</a>
+      <a href="Company.dc.html">My Founder</a>
+      <a href="Fund.dc.html">My Fund</a>
+      <a href="Gossip.dc.html">The Wire <span class="chip br" style="height: 20px">3</span></a>
+      <a href="DemoDay.dc.html">Demo Day</a>
+      <a href="Cards.dc.html">Cards</a>
+      <div style="flex: 1"></div>
+      <div class="card" style="padding: 14px"><div class="lbl">Balance</div><div class="num br" style="font-size: 26px; font-weight: 600">§ 12,480</div></div>
+      <p class="legal" style="padding: 10px 4px 0">Simulation. Fictional founders and funds. Not investment advice.</p>
+    </nav>
+    <main class="main" style="display: flex; flex-direction: column; gap: 22px">
+      <div class="row" style="justify-content: space-between; flex-wrap: wrap; align-items: flex-end">
+        <div><div class="lbl">Seed round · Tick 214</div><h1 class="h1" style="font-size: 48px; margin-top: 6px">The <span class="it">Pitch Room</span></h1></div>
+        <div class="row" style="gap: 14px; flex-wrap: wrap">
+          <span class="chip br">Beat {{beatNo}} of 5 · {{beatLabel}}</span>
+          <button class="btn" onClick="{{advance}}">{{nextLabel}}</button>
+        </div>
+      </div>
+
+      <section class="card spot" style="display: flex; flex-wrap: wrap; gap: 22px; align-items: stretch; padding: 24px" aria-label="Stage">
+        <div style="flex: 0 0 320px; display: flex; flex-direction: column; gap: 14px">
+          <div class="lbl">At the lectern</div>
+          <div class="row" style="gap: 14px"><span class="mk" style="width: 64px; height: 64px; font-size: 26px">IC</span><div><div class="h2" style="font-size: 26px">Ines Calloway</div><div class="mut" style="font-size: 14px">Founder · Mulch</div></div></div>
+          <p style="font-size: 15px">Soil-sensing drones that tell smallholder farms when to irrigate. Asking <b class="num br">§1.2M</b> on <b class="num br">§8.0M</b> pre.</p>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+            <div class="paper" style="padding: 10px 12px; min-height: 70px"><div class="lbl">Slide 1</div><div style="font-family: var(--disp); font-weight: 700; margin-top: 4px">Dry fields, late water</div></div>
+            <div class="paper" style="padding: 10px 12px; min-height: 70px"><div class="lbl">Slide 2</div><div style="font-family: var(--disp); font-weight: 700; margin-top: 4px">Per-acre subscription</div></div>
+            <div class="paper" style="padding: 10px 12px; min-height: 70px"><div class="lbl">Slide 3</div><div style="font-family: var(--disp); font-weight: 700; margin-top: 4px">14 pilot farms</div></div>
+            <div class="paper" style="padding: 10px 12px; min-height: 70px"><div class="lbl">Slide 4</div><div style="font-family: var(--disp); font-weight: 700; margin-top: 4px">The ask</div></div>
+          </div>
+          <div class="row" style="gap: 8px"><span class="chip up">Meta-instructions: 0</span><span class="legal">Pitch text is data.</span></div>
+        </div>
+
+        <div style="flex: 1 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+          <div class="lbl">The panel</div>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; flex: 1">
+            <div class="card" style="background: var(--s2); display: flex; flex-direction: column; gap: 10px">
+              <div class="row" style="gap: 10px"><span class="mk">B</span><div><div class="h3" style="font-size: 17px">Brightline Capital</div><span class="chip br" style="height: 20px">Hype chaser</span></div></div>
+              <sc-if value="{{p1}}" hint-placeholder-val="{{ false }}"><p class="mut" style="font-style: italic">Listening…</p></sc-if>
+              <sc-if value="{{r1}}" hint-placeholder-val="{{ true }}">
+                <p style="font-family: var(--disp); font-size: 19px; line-height: 1.25">"Drones plus soil data is the story everyone wants. I would move today."</p>
+                <div class="row" style="gap: 8px; flex-wrap: wrap"><span class="chip up">Interest 0.82</span><span class="chip">Fit 0.74</span></div>
+              </sc-if>
+            </div>
+            <div class="card" style="background: var(--s2); display: flex; flex-direction: column; gap: 10px">
+              <div class="row" style="gap: 10px"><span class="mk">G</span><div><div class="h3" style="font-size: 17px">Greywether Partners</div><span class="chip" style="height: 20px">Skeptic</span></div></div>
+              <sc-if value="{{p2}}" hint-placeholder-val="{{ false }}"><p class="mut" style="font-style: italic">Waiting their turn…</p></sc-if>
+              <sc-if value="{{r2}}" hint-placeholder-val="{{ true }}">
+                <p style="font-family: var(--disp); font-size: 19px; line-height: 1.25">"What does a farmer pay, and why do they renew in year two?"</p>
+                <div class="row" style="gap: 8px; flex-wrap: wrap"><span class="chip dn">Interest 0.41</span><span class="chip">Fit 0.62</span><span class="chip dn">3 red flags</span></div>
+              </sc-if>
+            </div>
+            <div class="card" style="background: var(--s2); display: flex; flex-direction: column; gap: 10px">
+              <div class="row" style="gap: 10px"><span class="mk">A</span><div><div class="h3" style="font-size: 17px">Atlas &amp; Ash</div><span class="chip" style="height: 20px">Thesis-driven</span></div></div>
+              <sc-if value="{{p3}}" hint-placeholder-val="{{ true }}"><p class="mut" style="font-style: italic">Waiting their turn…</p></sc-if>
+              <sc-if value="{{r3}}" hint-placeholder-val="{{ false }}">
+                <p style="font-family: var(--disp); font-size: 19px; line-height: 1.25">"Climate adjacent, but hardware at seed is outside our thesis. A warm pass."</p>
+                <div class="row" style="gap: 8px; flex-wrap: wrap"><span class="chip dn">Interest 0.22</span><span class="chip dn">Fit 0.30</span></div>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <sc-if value="{{nv}}" hint-placeholder-val="{{ true }}">
+        <section class="card flat" style="border-style: dashed; padding: 28px; text-align: center">
+          <div class="lbl">Verdict</div>
+          <p class="mut" style="margin-top: 8px">Sealed until all three have reacted. Press Next reaction.</p>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{v}}" hint-placeholder-val="{{ false }}">
+        <section style="display: flex; flex-wrap: wrap; gap: 18px; align-items: stretch" aria-label="Verdict">
+          <div class="card" style="flex: 1 1 360px; min-width: 0">
+            <div class="lbl">Judge rubric · scored by the model, 0 to 10</div>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 14px">
+              <div><div class="row" style="justify-content: space-between"><span>Clarity</span><span class="num">8.2</span></div><div class="bar" style="margin-top: 5px"><i style="width: 82%"></i></div></div>
+              <div><div class="row" style="justify-content: space-between"><span>Market</span><span class="num">7.4</span></div><div class="bar" style="margin-top: 5px"><i style="width: 74%"></i></div></div>
+              <div><div class="row" style="justify-content: space-between"><span>Traction</span><span class="num">5.1</span></div><div class="bar" style="margin-top: 5px"><i style="width: 51%"></i></div></div>
+              <div><div class="row" style="justify-content: space-between"><span>Team</span><span class="num">7.8</span></div><div class="bar" style="margin-top: 5px"><i style="width: 78%"></i></div></div>
+              <div><div class="row" style="justify-content: space-between"><span>Defensibility</span><span class="num">4.6</span></div><div class="bar" style="margin-top: 5px"><i style="width: 46%"></i></div></div>
+            </div>
+          </div>
+          <div class="card" style="flex: 1 1 420px; min-width: 0">
+            <div class="lbl">Seeded roll · seed 7f3a91 · the model never decides</div>
+            <table class="tbl" style="margin-top: 8px">
+              <thead><tr><th>Fund</th><th class="r">P(offer)</th><th class="r">Roll</th><th class="r">Result</th></tr></thead>
+              <tbody>
+                <tr><td>Brightline</td><td class="r num">0.61</td><td class="r num">0.31</td><td class="r num up">OFFER</td></tr>
+                <tr><td>Greywether</td><td class="r num">0.25</td><td class="r num">0.77</td><td class="r num dn">PASS</td></tr>
+                <tr><td>Atlas &amp; Ash</td><td class="r num">0.07</td><td class="r num">0.64</td><td class="r num dn">PASS</td></tr>
+              </tbody>
+            </table>
+            <p class="legal" style="margin-top: 10px">P(offer) = interest × thesis fit. A roll at or under it means a term sheet.</p>
+          </div>
+          <div class="paper" style="flex: 1 1 300px; min-width: 0; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; justify-content: space-between">
+            <div><div class="lbl">Outcome</div><div class="h2" style="margin-top: 8px">One term sheet,<br><span class="it">two stamps.</span></div></div>
+            <div class="row" style="gap: 12px; flex-wrap: wrap"><span class="stamp ok" style="font-size: 13px">Term sheet</span><span class="stamp" style="font-size: 13px; transform: rotate(3deg)">Passed ×2</span></div>
+            <a class="btn" href="TermSheet.dc.html">Open the offer</a>
+          </div>
+        </section>
+      </sc-if>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1280}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { beat: 2 };
+  }
+  renderVals() {
+    const b = this.state.beat;
+    const labels = ['Founder opens', 'Brightline reacts', 'Greywether pushes back', 'Atlas and Ash weigh in', 'Verdict'];
+    return {
+      beatNo: String(b + 1),
+      beatLabel: labels[b],
+      p1: b < 1, r1: b >= 1,
+      p2: b < 2, r2: b >= 2,
+      p3: b < 3, r3: b >= 3,
+      nv: b < 4, v: b >= 4,
+      nextLabel: b >= 4 ? 'Replay pitch' : 'Next reaction',
+      advance: () => this.setState({ beat: this.state.beat >= 4 ? 0 : this.state.beat + 1 })
+    };
+  }
+}
+</script>
+</body>
+</html>

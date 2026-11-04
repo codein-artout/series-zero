@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Floor world dashboard</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./sz.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..900;1,6..96,500..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="sz" style="min-height: 1280px; display: flex; flex-direction: column">
+  <div class="tape" aria-label="Live ticker">
+    <span><b>MULCH</b> §9.2M <em class="up" style="font-style: normal">▲ 18.4%</em></span>
+    <span><b>TESSERA</b> §22M <em class="up" style="font-style: normal">▲ 9.0%</em></span>
+    <span><b>HALFPINT</b> §1.1M <em class="dn" style="font-style: normal">▼ 41.0%</em></span>
+    <span><b>HYPE INDEX</b> 72 <em class="up" style="font-style: normal">▲ 4</em></span>
+    <span><b>BRIGHTLINE</b> MOIC 1.9x</span>
+    <span><b>CLIMATE POOL</b> §48.2M <em class="up" style="font-style: normal">▲ 6.4%</em></span>
+    <span><b>FINTECH POOL</b> §31.0M <em class="dn" style="font-style: normal">▼ 2.2%</em></span>
+  </div>
+  <div class="shell" style="flex: 1">
+    <nav class="nav" aria-label="Main">
+      <div class="logo" style="margin-bottom: 22px"><i>0</i>Series Zero</div>
+      <a href="World.dc.html" class="on">The Floor</a>
+      <a href="PitchRoom.dc.html">Pitch Room</a>
+      <a href="Company.dc.html">My Founder</a>
+      <a href="Fund.dc.html">My Fund</a>
+      <a href="Gossip.dc.html">The Wire <span class="chip br" style="height: 20px">3</span></a>
+      <a href="DemoDay.dc.html">Demo Day</a>
+      <a href="Cards.dc.html">Cards</a>
+      <div style="flex: 1"></div>
+      <div class="card" style="padding: 14px">
+        <div class="lbl">Balance</div>
+        <div class="num br" style="font-size: 26px; font-weight: 600">§ 12,480</div>
+        <div class="legal" style="margin-top: 6px">Burn today −§1,150</div>
+      </div>
+      <p class="legal" style="padding: 10px 4px 0">Simulation. Fictional founders and funds. Not investment advice.</p>
+    </nav>
+    <main class="main" style="display: flex; flex-direction: column; gap: 24px">
+      <div class="row" style="justify-content: space-between; flex-wrap: wrap; align-items: flex-end">
+        <div>
+          <div class="lbl">Season 3 · Tick 214 of 270</div>
+          <h1 class="h1" style="font-size: 52px; margin-top: 6px">The Floor</h1>
+        </div>
+        <div class="card" style="padding: 12px 18px; display: flex; gap: 18px; align-items: center">
+          <div><div class="lbl">Next tick in</div><div class="num br" style="font-size: 24px; font-weight: 600">02:41:18</div></div>
+          <a class="btn ghost" href="Gossip.dc.html" style="min-height: 40px">Catch up</a>
+        </div>
+      </div>
+
+      <section aria-label="Waiting on you">
+        <div class="lbl" style="margin-bottom: 10px">Waiting on you · 3 calls</div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+          <div class="card" style="border-color: var(--brass)">
+            <div class="row" style="justify-content: space-between"><span class="chip br">Term sheet</span><span class="legal">expires in 2 ticks</span></div>
+            <p style="margin: 10px 0 14px">Brightline offers <b class="num">§1.2M</b> at <b class="num">§8.0M</b> pre for Mulch.</p>
+            <a class="btn" href="TermSheet.dc.html" style="min-height: 38px">Review offer</a>
+          </div>
+          <div class="card">
+            <div class="row" style="justify-content: space-between"><span class="chip">Pivot</span><span class="legal">burn at 38 days</span></div>
+            <p style="margin: 10px 0 14px">Mulch proposes a pivot to irrigation-as-a-service after two passes.</p>
+            <div class="row" style="gap: 10px"><a class="btn" href="Company.dc.html" style="min-height: 38px">Approve</a><a class="btn ghost" href="Company.dc.html" style="min-height: 38px">Veto</a></div>
+          </div>
+          <div class="card">
+            <div class="row" style="justify-content: space-between"><span class="chip">Thesis</span><span class="legal">2 of 3 edits left</span></div>
+            <p style="margin: 10px 0 14px">Greywether drifted toward climate hardware after two wins. Keep it?</p>
+            <a class="btn ghost" href="Fund.dc.html" style="min-height: 38px">Edit thesis</a>
+          </div>
+        </div>
+      </section>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: stretch">
+        <section class="card" style="flex: 0 0 300px; display: flex; flex-direction: column; gap: 12px" aria-label="Hype index">
+          <div class="lbl">Hype index</div>
+          <div class="row" style="align-items: baseline; gap: 12px"><div class="num br" style="font-size: 72px; font-weight: 600; line-height: 1">72</div><span class="chip dn">Overheated</span></div>
+          <div style="position: relative; padding-top: 14px">
+            <div style="display: flex; height: 12px; gap: 3px">
+              <i style="flex: 1; background: #2A4B67"></i><i style="flex: 1; background: #3A6B5A"></i><i style="flex: 1; background: #7C8A3A"></i><i style="flex: 1; background: #C8A24A"></i><i style="flex: 1; background: #D6452D"></i>
+            </div>
+            <div style="position: absolute; left: 72%; top: 0; width: 2px; height: 28px; background: var(--tx)"></div>
+          </div>
+          <div class="row" style="justify-content: space-between"><span class="legal">Frozen</span><span class="legal">Bubble</span></div>
+          <hr class="hair">
+          <p class="mut" style="font-size: 14px">Above 80 the next tick can crash a sector. Herding VCs are already paying up in AI Infra.</p>
+          <div class="legal">Crash risk this season · <span class="dn">31%</span></div>
+        </section>
+
+        <section class="card" style="flex: 1 1 600px; min-width: 0" aria-label="Sector heatmap">
+          <div class="row" style="justify-content: space-between; margin-bottom: 12px"><div class="lbl">Sector demand pools · tile size = pool</div><span class="legal">7-day change</span></div>
+          <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 104px; gap: 6px; grid-auto-flow: dense">
+            <div style="grid-column: span 2; grid-row: span 2; background: #1F5A3F; padding: 14px; display: flex; flex-direction: column; justify-content: space-between"><div><div class="h3">AI Infra</div><div class="legal" style="color: #CFE3D8">41 companies</div></div><div><div class="num" style="font-size: 30px; font-weight: 600">§62.4M</div><div class="num up">▲ 8.1%</div></div></div>
+            <div style="grid-column: span 2; background: #1F5A3F; padding: 12px; display: flex; flex-direction: column; justify-content: space-between"><div class="h3">Climate</div><div class="row" style="justify-content: space-between"><span class="num" style="font-size: 20px; font-weight: 600">§48.2M</span><span class="num up">▲ 6.4%</span></div></div>
+            <div style="background: #6B2A22; padding: 12px; display: flex; flex-direction: column; justify-content: space-between"><div class="h3" style="font-size: 17px">Fintech</div><div><div class="num" style="font-size: 16px; font-weight: 600">§31.0M</div><div class="num dn" style="font-size: 12px">▼ 2.2%</div></div></div>
+            <div style="background: #2A3D36; padding: 12px; display: flex; flex-direction: column; justify-content: space-between"><div class="h3" style="font-size: 17px">DevTools</div><div><div class="num" style="font-size: 16px; font-weight: 600">§19.5M</div><div class="num mut" style="font-size: 12px">► 0.3%</div></div></div>
+            <div style="grid-column: span 2; background: #6B2A22; padding: 12px; display: flex; flex-direction: column; justify-content: space-between"><div class="h3">Health</div><div class="row" style="justify-content: space-between"><span class="num" style="font-size: 20px; font-weight: 600">§27.8M</span><span class="num dn">▼ 5.7%</span></div></div>
+            <div style="background: #1F5A3F; padding: 12px; display: flex; flex-direction: column; justify-content: space-between"><div class="h3" style="font-size: 17px">Space</div><div><div class="num" style="font-size: 16px; font-weight: 600">§12.1M</div><div class="num up" style="font-size: 12px">▲ 2.9%</div></div></div>
+            <div style="background: #2A3D36; padding: 12px; display: flex; flex-direction: column; justify-content: space-between"><div class="h3" style="font-size: 17px">Consumer</div><div><div class="num" style="font-size: 16px; font-weight: 600">§14.6M</div><div class="num mut" style="font-size: 12px">► −0.4%</div></div></div>
+          </div>
+          <div class="legal" style="margin-top: 10px">Green = pool growing. Red = shrinking. Grey = flat. Every figure is simulated.</div>
+        </section>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: stretch">
+        <section class="card" style="flex: 1 1 480px; min-width: 0" aria-label="News feed">
+          <div class="row" style="justify-content: space-between; margin-bottom: 10px"><div class="lbl">Wire · world events</div><span class="chip">Fixture feed</span></div>
+          <div style="display: flex; flex-direction: column">
+            <div style="padding: 12px 0; border-top: 1px solid var(--line)"><div class="row" style="justify-content: space-between; align-items: flex-start"><p style="font-weight: 500">Solid-state cell hits 480 Wh/kg in a lab demo</p><span class="chip up">Climate +9%</span></div><div class="legal" style="margin-top: 4px">Breakthrough · Tick 214</div></div>
+            <div style="padding: 12px 0; border-top: 1px solid var(--line)"><div class="row" style="justify-content: space-between; align-items: flex-start"><p style="font-weight: 500">Regulators open a review of stablecoin issuers</p><span class="chip dn">Fintech −6%</span></div><div class="legal" style="margin-top: 4px">Regulation · Tick 213</div></div>
+            <div style="padding: 12px 0; border-top: 1px solid var(--line)"><div class="row" style="justify-content: space-between; align-items: flex-start"><p style="font-weight: 500">Chip export limits tighten for two model labs</p><span class="chip br">AI Infra +4%</span></div><div class="legal" style="margin-top: 4px">Policy · Tick 211</div></div>
+            <div style="padding: 12px 0; border-top: 1px solid var(--line)"><div class="row" style="justify-content: space-between; align-items: flex-start"><p style="font-weight: 500">Three seed funds announce the same climate thesis</p><span class="chip br">Herding</span></div><div class="legal" style="margin-top: 4px">Market · Tick 210</div></div>
+          </div>
+        </section>
+        <section class="card" style="flex: 1 1 520px; min-width: 0" aria-label="Movers">
+          <div class="row" style="justify-content: space-between; margin-bottom: 6px"><div class="lbl">Movers · 7 days</div><a class="lbl br" href="DemoDay.dc.html">Full board →</a></div>
+          <table class="tbl">
+            <thead><tr><th>Company</th><th>Sector</th><th class="r">Valuation</th><th class="r">Δ</th></tr></thead>
+            <tbody>
+              <tr><td><b>Mulch</b></td><td class="mut">Climate</td><td class="r num">§9.2M</td><td class="r num up">▲ 18.4%</td></tr>
+              <tr><td><b>Tessera</b></td><td class="mut">AI Infra</td><td class="r num">§22.0M</td><td class="r num up">▲ 9.0%</td></tr>
+              <tr><td><b>Ledgerleaf</b></td><td class="mut">Fintech</td><td class="r num">§6.4M</td><td class="r num dn">▼ 12.3%</td></tr>
+              <tr><td><b>Ferrule</b></td><td class="mut">DevTools</td><td class="r num">§3.8M</td><td class="r num up">▲ 1.1%</td></tr>
+              <tr><td><b>Halfpint</b></td><td class="mut">Consumer</td><td class="r num">§1.1M</td><td class="r num dn">▼ 41.0%</td></tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1280}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

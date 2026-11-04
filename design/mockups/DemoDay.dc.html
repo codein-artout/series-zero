@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Demo Day leaderboard</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./sz.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..900;1,6..96,500..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="sz" style="min-height: 1280px; display: flex; flex-direction: column">
+  <div class="tape" aria-label="Live ticker">
+    <span><b>DEMO DAY</b> starts in 02:14:09</span>
+    <span><b>TESSERA</b> #1 · score 0.91</span>
+    <span><b>BASALT</b> #2 · score 0.84</span>
+    <span><b>MULCH</b> #3 · score 0.70 <em class="up" style="font-style: normal">▲ 2 places</em></span>
+  </div>
+  <div class="shell" style="flex: 1">
+    <nav class="nav" aria-label="Main">
+      <div class="logo" style="margin-bottom: 22px"><i>0</i>Series Zero</div>
+      <a href="World.dc.html">The Floor</a>
+      <a href="PitchRoom.dc.html">Pitch Room</a>
+      <a href="Company.dc.html">My Founder</a>
+      <a href="Fund.dc.html">My Fund</a>
+      <a href="Gossip.dc.html">The Wire <span class="chip br" style="height: 20px">3</span></a>
+      <a href="DemoDay.dc.html" class="on">Demo Day</a>
+      <a href="Cards.dc.html">Cards</a>
+      <div style="flex: 1"></div>
+      <div class="card" style="padding: 14px"><div class="lbl">Balance</div><div class="num br" style="font-size: 26px; font-weight: 600">§ 12,480</div></div>
+      <p class="legal" style="padding: 10px 4px 0">Simulation. Fictional founders and funds. Not investment advice.</p>
+    </nav>
+    <main class="main" style="display: flex; flex-direction: column; gap: 22px">
+      <div class="row" style="justify-content: space-between; flex-wrap: wrap; align-items: flex-end">
+        <div><div class="lbl">Season 3 · Friday · ranked by relative score</div><h1 class="h1" style="font-size: 64px; margin-top: 6px">Demo <span class="it" style="color: var(--brass2)">Day</span></h1></div>
+        <div class="row" style="gap: 8px"><span class="chip br">Founders</span><span class="chip">VCs</span><span class="chip">Past seasons</span></div>
+      </div>
+
+      <section class="card spot" style="padding: 32px 24px 0; overflow: hidden" aria-label="Podium">
+        <div style="display: flex; justify-content: center; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+          <div style="width: 240px; text-align: center">
+            <div class="h3">Basalt</div><div class="legal" style="margin-bottom: 8px">Climate · led by Greywether</div>
+            <div style="height: 130px; background: var(--s2); border: 1px solid var(--line2); border-bottom: 0; padding-top: 14px"><div class="h1" style="font-size: 56px; color: var(--mut)">2</div><div class="num">0.84</div></div>
+          </div>
+          <div style="width: 260px; text-align: center">
+            <span class="stamp ok" style="font-size: 12px; padding: 2px 10px; transform: rotate(-3deg)">Season leader</span>
+            <div class="h3" style="margin-top: 8px; font-size: 24px">Tessera</div><div class="legal" style="margin-bottom: 8px">AI Infra · led by Atlas &amp; Ash</div>
+            <div style="height: 180px; background: var(--brass); color: #16130A; padding-top: 18px"><div class="h1" style="font-size: 76px">1</div><div class="num" style="font-weight: 600">0.91</div></div>
+          </div>
+          <div style="width: 240px; text-align: center">
+            <div class="h3">Mulch</div><div class="legal" style="margin-bottom: 8px">Climate · your founder</div>
+            <div style="height: 100px; background: var(--s2); border: 1px solid var(--line2); border-bottom: 0; padding-top: 10px"><div class="h1" style="font-size: 44px; color: var(--mut)">3</div><div class="num">0.70</div></div>
+          </div>
+        </div>
+      </section>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+        <section class="card" style="flex: 1.6 1 640px; min-width: 0" aria-label="Founder leaderboard">
+          <div class="row" style="justify-content: space-between"><div class="lbl">Leaderboard · founders</div><span class="legal">Score = 50% growth · 30% scale · 20% efficiency</span></div>
+          <table class="tbl" style="margin-top: 6px">
+            <thead><tr><th>#</th><th>Company</th><th>Sector</th><th class="r">Valuation</th><th class="r">Score</th><th>Lead</th><th class="r">Move</th></tr></thead>
+            <tbody>
+              <tr><td class="num br">1</td><td><b>Tessera</b></td><td class="mut">AI Infra</td><td class="r num">§22.0M</td><td class="r num">0.91</td><td class="mut">Atlas &amp; Ash</td><td class="r num mut">►</td></tr>
+              <tr><td class="num br">2</td><td><b>Basalt</b></td><td class="mut">Climate</td><td class="r num">§17.1M</td><td class="r num">0.84</td><td class="mut">Greywether</td><td class="r num dn">▼ 1</td></tr>
+              <tr style="background: var(--s2)"><td class="num br">3</td><td><b>Mulch</b></td><td class="mut">Climate</td><td class="r num">§9.2M</td><td class="r num">0.70</td><td class="mut">Unfunded</td><td class="r num up">▲ 2</td></tr>
+              <tr><td class="num br">4</td><td><b>Ferrule</b></td><td class="mut">DevTools</td><td class="r num">§3.8M</td><td class="r num">0.66</td><td class="mut">Greywether</td><td class="r num up">▲ 1</td></tr>
+              <tr><td class="num br">5</td><td><b>Orrery</b></td><td class="mut">Space</td><td class="r num">§7.1M</td><td class="r num">0.61</td><td class="mut">Greywether</td><td class="r num dn">▼ 2</td></tr>
+              <tr><td class="num br">6</td><td><b>Quillfeather</b></td><td class="mut">AI Infra</td><td class="r num">§5.5M</td><td class="r num">0.58</td><td class="mut">Brightline</td><td class="r num up">▲ 4</td></tr>
+              <tr><td class="num br">7</td><td><b>Ledgerleaf</b></td><td class="mut">Fintech</td><td class="r num">§6.4M</td><td class="r num">0.44</td><td class="mut">Greywether</td><td class="r num dn">▼ 3</td></tr>
+              <tr><td class="num br">8</td><td><b>Halfpint</b></td><td class="mut">Consumer</td><td class="r num">§1.1M</td><td class="r num">0.19</td><td class="mut">Nobody</td><td class="r num dn">▼ 6</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <aside style="flex: 1 1 340px; min-width: 0; max-width: 420px; display: flex; flex-direction: column; gap: 18px">
+          <section class="card" aria-label="VC leaderboard">
+            <div class="lbl">Leaderboard · funds by MOIC</div>
+            <table class="tbl" style="margin-top: 6px">
+              <tbody>
+                <tr><td class="num br">1</td><td><b>Greywether</b></td><td class="r num">2.4x</td></tr>
+                <tr><td class="num br">2</td><td><b>Atlas &amp; Ash</b></td><td class="r num">2.1x</td></tr>
+                <tr><td class="num br">3</td><td><b>Brightline</b></td><td class="r num">1.9x</td></tr>
+                <tr><td class="num br">4</td><td><b>Obelisk</b></td><td class="r num">1.4x</td></tr>
+              </tbody>
+            </table>
+            <p class="legal" style="margin-top: 8px">One IPO and nine failures can still top this list. Conviction pays.</p>
+          </section>
+          <section class="paper" style="padding: 20px 22px" aria-label="Season prizes">
+            <div class="lbl">What the top three keep</div>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px; font-size: 14px">
+              <div class="row" style="justify-content: space-between"><span>Permanent title card</span><span class="num">Top 3</span></div>
+              <div class="row" style="justify-content: space-between"><span>Reputation carried over</span><span class="num">+10</span></div>
+              <div class="row" style="justify-content: space-between"><span>Season 4 entry credit</span><span class="num">§2,000</span></div>
+            </div>
+            <hr class="hair" style="margin: 14px 0">
+            <p class="mut" style="font-size: 13px">Scores and balances reset at season end. Reputation and cosmetics do not.</p>
+          </section>
+        </aside>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1280}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

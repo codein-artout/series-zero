@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Series Zero phone landing</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./sz.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..900;1,6..96,500..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="sz" style="width: 390px; min-height: 1240px; display: flex; flex-direction: column">
+  <div class="tape" aria-label="Live ticker">
+    <span><b>MULCH</b> §9.2M <em class="up" style="font-style: normal">▲ 18.4%</em></span>
+    <span><b>HYPE</b> 72</span>
+    <span><b>HALFPINT</b> <em class="dn" style="font-style: normal">▼ 41%</em></span>
+  </div>
+  <div class="row" style="justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--line)">
+    <div class="logo" style="font-size: 20px"><i>0</i>Series Zero</div>
+    <a class="btn ghost" href="M-World.dc.html" style="min-height: 44px; padding: 0 14px">The Floor</a>
+  </div>
+
+  <div style="padding: 28px 20px 8px; display: flex; flex-direction: column; gap: 18px">
+    <span class="chip br" style="align-self: flex-start">Season 3 · Tick 214</span>
+    <h1 class="h1" style="font-size: 52px">Pitch it.<br>Get funded.<br><span class="it" style="color: var(--brass2)">Or get stamped.</span></h1>
+    <p class="mut" style="font-size: 16px">One sentence in. A fictional founder pitches a panel of VC agents in ten seconds. Rejections are public.</p>
+    <form class="card" style="display: flex; flex-direction: column; gap: 12px">
+      <label class="lbl" for="m-idea">Your startup, one sentence</label>
+      <textarea id="m-idea" class="field" rows="3">Soil-sensing drones that tell smallholder farms when to irrigate.</textarea>
+      <label class="lbl" for="m-url">Optional URL (title only)</label>
+      <input id="m-url" class="field" type="text" value="https://">
+      <a class="btn" href="M-Pitch.dc.html" style="width: 100%">Spawn my founder</a>
+      <p class="legal">Fictional founders and funds. Not investment advice.</p>
+    </form>
+  </div>
+
+  <div style="position: relative; height: 250px; margin: 12px 20px 0">
+    <div class="card" style="position: absolute; left: 0; top: 56px; width: 250px; transform: rotate(-4deg); background: #1A1210; border-color: #5A2A22">
+      <div class="lbl" style="color: var(--red)">Passed · Greywether</div>
+      <p style="margin-top: 6px; font-family: var(--disp); font-weight: 700; font-size: 17px">"Your moat is a hobby."</p>
+    </div>
+    <div class="paper" style="position: absolute; right: 0; top: 0; width: 240px; padding: 16px 18px; transform: rotate(3deg)">
+      <div class="lbl">Term sheet</div>
+      <div class="h3" style="margin-top: 4px; color: var(--ink)">Brightline → Mulch</div>
+      <div class="num" style="margin-top: 8px; font-size: 13px">§1.2M at §8.0M pre</div>
+      <span class="stamp ok" style="font-size: 12px; padding: 2px 8px; margin-top: 10px">Funded</span>
+    </div>
+  </div>
+
+  <div style="padding: 18px 20px 28px">
+    <div class="lbl" style="margin-bottom: 12px">How a round works</div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <div class="card" style="display: flex; gap: 14px; padding: 14px 16px"><span class="num br">01</span><div><b>Describe.</b> <span class="mut">One sentence becomes a founder with DNA.</span></div></div>
+      <div class="card" style="display: flex; gap: 14px; padding: 14px 16px"><span class="num br">02</span><div><b>Pitch.</b> <span class="mut">Three VC agents, three tempers.</span></div></div>
+      <div class="card" style="display: flex; gap: 14px; padding: 14px 16px"><span class="num br">03</span><div><b>Decide.</b> <span class="mut">Three ticks a day. A few calls are yours.</span></div></div>
+      <div class="card" style="display: flex; gap: 14px; padding: 14px 16px"><span class="num br">04</span><div><b>Survive.</b> <span class="mut">Beat your sector. Demo Day is Friday.</span></div></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1240}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
