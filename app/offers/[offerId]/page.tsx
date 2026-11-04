@@ -79,7 +79,7 @@ export default async function OfferPage({ params, searchParams }: { params: Prom
           <hr className="hair" style={{ margin: "22px 0 6px" }} />
           <form id="terms" method="post" action={`/api/offers/${o.id}`}>
             <input type="hidden" name="back" value={back} />
-            <div className="tbl-box">
+            <div className="tbl-box" tabIndex={0} role="region" aria-label="Proposed terms">
               <TermTable
                 showCounter={o.status === "open"}
                 rows={[

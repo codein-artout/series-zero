@@ -16,6 +16,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
+    "check": "pnpm typecheck && pnpm lint && pnpm test",
     "e2e": "playwright test",
     "seed": "tsx scripts/seed.ts",
     "tick": "tsx scripts/tick.ts",

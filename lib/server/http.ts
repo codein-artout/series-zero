@@ -20,7 +20,8 @@ export function safeBack(req: NextRequest, value: unknown, fallback: string): st
 
 export function respond(req: NextRequest, ok: boolean, payload: Record<string, unknown>, back: string, status = ok ? 200 : 400): NextResponse {
   if (wantsJson(req)) return NextResponse.json(payload, { status });
-  const url = new URL(back, req.url);
+  // Relative Location keeps the browser on the host it used (cookies stay attached).
+  const url = new URL(back, "http://local");
   url.searchParams.set(ok ? "ok" : "err", String(payload.message ?? payload.error ?? ""));
-  return NextResponse.redirect(url, 303);
+  return new NextResponse(null, { status: 303, headers: { location: `${url.pathname}${url.search}${url.hash}` } });
 }

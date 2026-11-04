@@ -31,7 +31,7 @@ export function DataTable<T>({
 }) {
   if (rows.length === 0 && empty) return <>{empty}</>;
   return (
-    <div className="tbl-box">
+    <div className="tbl-box" tabIndex={0} role="region" aria-label={caption ?? "Table"}>
       <table className={cx("tbl", className)} style={style}>
         {caption ? <caption className="sr-only">{caption}</caption> : null}
         <thead>

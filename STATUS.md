@@ -18,9 +18,9 @@
 - [x] 14. Social layer
 - [x] 15. Safety
 - [x] 16. Screens, desktop
-- [ ] 17. Phone layouts and shareable cards
-- [ ] 18. Seed script
-- [ ] 19. Tests
+- [x] 17. Phone layouts and shareable cards
+- [x] 18. Seed script
+- [x] 19. Tests
 - [ ] 20. Visual QA
 - [ ] 21. Docs
 
