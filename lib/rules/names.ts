@@ -57,9 +57,14 @@ export function companyName(rng: Rng, used: Set<string>): string {
 }
 
 export function fundName(rng: Rng, used: Set<string>): string {
+  const firstWords = new Set([...used].map((n) => n.split(" ")[0]));
+  const fresh = <T,>(xs: readonly T[], key: (x: T) => string) => {
+    const left = xs.filter((x) => !firstWords.has(key(x)));
+    return rng.pick(left.length ? left : xs);
+  };
   return guarded(
     rng,
-    () => (rng.next() < 0.2 ? (([a, b]) => `${a} & ${b}`)(rng.pick(PAIRS)) : `${rng.pick(FUND_A)} ${rng.pick(FUND_SUFFIX)}`),
+    () => (rng.next() < 0.2 ? (([a, b]) => `${a} & ${b}`)(fresh(PAIRS, (p) => p[0])) : `${fresh(FUND_A, (x) => x)} ${rng.pick(FUND_SUFFIX)}`),
     used,
     (i) => `${rng.pick(FUND_A)} ${rng.pick(FUND_SUFFIX)} ${["II", "III", "IV", "V"][i % 4]}`,
   );

@@ -187,6 +187,8 @@ export interface Idea {
   duplicate: boolean;
   tick: number;
   source: "seed" | "hook" | "pivot" | "player";
+  /** Four slide titles for the pitch room. */
+  slides?: string[];
 }
 
 export interface Rubric {

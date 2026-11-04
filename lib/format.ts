@@ -82,3 +82,11 @@ export function handle(name: string): string {
 export function ticksLabel(n: number): string {
   return `${n} tick${n === 1 ? "" : "s"}`;
 }
+
+export function fmtCountdown(ms: number): string {
+  const s = Math.max(0, Math.floor(ms / 1000));
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  return [h, m, sec].map((x) => String(x).padStart(2, "0")).join(":");
+}

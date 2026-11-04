@@ -158,8 +158,10 @@ export async function generateIdea(
   };
   w.ideas.set(idea.id, idea);
   w.appended.ideas.push(idea);
-  const slides = (value.slides ?? []).map((s) => cleanField(s, 40)).filter(Boolean).slice(0, 4);
-  return { idea, name, slides: slides.length === 4 ? slides : ["The problem", "How it makes money", "Early signs", "The ask"], provider: meta.provider };
+  const cleanSlides = (value.slides ?? []).map((s) => cleanField(s, 40)).filter(Boolean).slice(0, 4);
+  const slides = cleanSlides.length === 4 ? cleanSlides : ["The problem", "How it makes money", "Early signs", "The ask"];
+  idea.slides = slides;
+  return { idea, name, slides, provider: meta.provider };
 }
 
 export function createCompany(w: World, cfg: GameConfig, founder: FounderAgent, idea: Idea, name: string, tick: number): Company {

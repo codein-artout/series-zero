@@ -39,7 +39,7 @@ export function forwardOdds(i: OddsInput, cfg: GameConfig, seedKey: string): Odd
   if (i.status === "public") return { ...counts, IPO: 1 };
   const horizon = Math.max(1, i.ticksLeft);
   const rng = Rng.fromString(`${seedKey}|odds|${i.companyId}|${i.tick}`);
-  const g0 = clamp(i.growth7d, -0.6, 1.5) / cfg.ticks.perWeek;
+  const g0 = clamp(i.growth7d, -0.3, 0.3) / cfg.ticks.perWeek;
   for (let r = 0; r < runs; r++) {
     let cash = i.cash;
     let rev = i.revenuePerTick;
@@ -49,10 +49,10 @@ export function forwardOdds(i: OddsInput, cfg: GameConfig, seedKey: string): Odd
     let flat = 0;
     let outcome: keyof Odds | null = null;
     for (let t = 0; t < horizon && !outcome; t++) {
-      g = 0.97 * g + 0.002 * rng.normal();
+      g = 0.92 * g + 0.0015 * rng.normal();
       rev = Math.max(0, rev * (1 + g));
       cash += rev - i.burnPerTick;
-      mark = Math.max(0, mark * (1 + g * 1.2 + 0.01 * rng.normal()));
+      mark = Math.max(0, mark * (1 + g * 0.6 + 0.008 * rng.normal()));
       if (cash < 0) {
         if (t % cfg.fundraise.pitchEveryTicks === 0 && rng.next() < i.offerRate) cash += i.roundSize;
         grace = grace < 0 ? cfg.company.graceTicks : grace - 1;
