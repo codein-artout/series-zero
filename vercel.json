@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm prisma migrate deploy && pnpm build",
+  "crons": [
+    { "path": "/api/cron/tick", "schedule": "30 20 * * *" },
+    { "path": "/api/cron/tick", "schedule": "30 4 * * *" },
+    { "path": "/api/cron/tick", "schedule": "30 12 * * *" }
+  ],
+  "functions": {
+    "app/api/cron/tick/route.ts": { "maxDuration": 60 },
+    "app/api/hook/route.ts": { "maxDuration": 30 }
+  }
+}

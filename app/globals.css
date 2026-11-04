@@ -297,3 +297,9 @@ a.chip:hover, button.chip:hover { color: var(--tx); }
   .next-tick .num { font-size: 20px !important; }
   .tape { font-size: 11px; }
 }
+.card-slot { display: block; width: 352px; max-width: 100%; }
+.card-zoom { zoom: 0.82; }
+@media (max-width: 639px) {
+  .card-slot { width: 100%; }
+  .card-zoom { zoom: 0.8; }
+}

@@ -23,6 +23,7 @@
     "db:generate": "prisma generate",
     "db:migration": "tsx scripts/make-migration.ts",
     "render:mockups": "tsx scripts/render-mockups.ts",
+    "qa": "tsx scripts/visual-qa.ts",
     "postinstall": "prisma generate"
   },
   "pnpm": {

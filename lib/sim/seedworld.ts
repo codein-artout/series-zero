@@ -9,6 +9,7 @@ import { runTick, type TickSummary } from "./engine";
 import { createWorld } from "./genesis";
 import { resolvePitch } from "./pitch";
 import { stepMeetings } from "./funds";
+import { createCard } from "./social";
 import { stepRestarts } from "./spawn";
 import type { World } from "./types";
 import { walletAccount } from "./world";
@@ -114,4 +115,20 @@ export async function ensureDemoCalls(w: World, cfg: GameConfig): Promise<void> 
     await resolvePitch(w, cfg, mulch, tick, { source: "player" });
   }
   stepMeetings(w, cfg, tick);
+  // One rejection roast card for the demo coach, so the gallery shows all three kinds.
+  const pass = [...w.appended.pitches]
+    .reverse()
+    .filter((x) => x.founderId === ines?.id && x.fraud.severity !== "high")
+    .flatMap((x) => x.reactions.filter((r) => !r.offer && r.roll !== null).map((r) => ({ x, r })))[0];
+  if (pass && mulch) {
+    createCard(w, "roast", `${pass.x.id}:${pass.r.fundId}`, DEMO_USER_ID, tick, {
+      vc: w.funds.get(pass.r.fundId)?.name ?? "A fund",
+      interest: pass.r.interest,
+      quote: pass.r.text,
+      company: mulch.name,
+      stage: pass.x.stage === "seriesA" ? "Series A" : pass.x.stage === "preseed" ? "Pre-seed" : "Seed",
+      ask: pass.x.ask,
+      tick: pass.x.tick,
+    });
+  }
 }

@@ -21,8 +21,8 @@
 - [x] 17. Phone layouts and shareable cards
 - [x] 18. Seed script
 - [x] 19. Tests
-- [ ] 20. Visual QA
-- [ ] 21. Docs
+- [x] 20. Visual QA
+- [x] 21. Docs
 
 ## Running
 
