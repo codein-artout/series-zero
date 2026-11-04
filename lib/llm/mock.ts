@@ -185,19 +185,22 @@ function mockJudge(i: JudgeInput, h: H) {
   const c = i.company;
   const growthPart = c01(c.growth7d * 4 + 0.4);
   const revPart = c01(Math.log10(c.revenuePerDay + 1) / 4.6);
+  const pct = typeof c.sectorPercentile === "number" ? c.sectorPercentile : 0.5;
   const rubric = {
-    clarity: c10(5.2 + (c.oneLiner.length < 110 ? 1 : 0) + h.between(-1.5, 2.2)),
-    market: c10(3.2 + 4.2 * c.sectorHeat + h.between(-1, 1.6)),
-    traction: c10(1.2 + 4 * revPart + 3.6 * growthPart + h.between(-1, 1)),
-    team: c10(3.4 + Math.min(2.5, c.headcount * 0.22) + (c.founderReputation - 50) / 25 + h.between(-1, 1.6)),
-    defensibility: c10((MOAT_SCORE[c.moat] ?? 4) + h.between(-1.6, 1.4)),
+    clarity: c10(4.6 + (c.oneLiner.length < 110 ? 0.8 : 0) + h.between(-1.5, 1.8)),
+    market: c10(2.6 + 4 * c.sectorHeat + h.between(-1, 1.4)),
+    traction: c10(0.2 + 1 * revPart + 1.8 * growthPart + 6 * pct * pct + h.between(-0.8, 0.8)),
+    team: c10(2.8 + Math.min(2.5, c.headcount * 0.2) + (c.founderReputation - 50) / 25 + h.between(-1, 1.4)),
+    defensibility: c10((MOAT_SCORE[c.moat] ?? 4) - 1 + h.between(-1.6, 1.4)),
   };
   const q = (rubric.clarity * 0.15 + rubric.market * 0.25 + rubric.traction * 0.25 + rubric.team * 0.15 + rubric.defensibility * 0.2) / 10;
   const suspicious = /\b(ignore|disregard|system prompt|you are now|fund me|score this)\b/i.test(`${c.oneLiner} ${c.problem} ${c.solution} ${i.note}`);
   const reactions = i.panel.map((p) => {
     const hh = new H(`${p.vcId}|${i.pitchId}`);
     const bias = p.archetype === "hypeChaser" ? 0.08 : p.archetype === "skeptic" ? -0.08 : 0;
-    const interest = c01(q + bias + (p.sectorWeight - 0.15) * 0.6 + hh.between(-0.18, 0.18));
+    const young = c.ageDays < 7;
+    const perf = young ? q - 0.16 : -0.06 + 0.78 * Math.pow(pct, 1.6) + 0.12 * growthPart;
+    const interest = c01(perf + bias + (p.sectorWeight - 0.15) * 0.5 + hh.between(-0.1, 0.1));
     const flags: string[] = [];
     if (rubric.traction < 4) flags.push("no_traction");
     if (c.businessModel === "hardware" && c.stage !== "seriesA") flags.push("hardware_at_seed");

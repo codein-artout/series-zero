@@ -41,6 +41,8 @@ export interface JudgeInput {
     pivotCount: number;
     founderReputation: number;
     sectorHeat: number;
+    /** Public sector rank as a percentile (1 = top). */
+    sectorPercentile: number;
   };
   note: string;
   panel: Array<{ vcId: string; name: string; archetype: string; style: string; redFlagLines: string[]; sectorWeight: number }>;

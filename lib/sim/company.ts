@@ -180,7 +180,7 @@ export async function stepFundraising(w: World, cfg: GameConfig, tick: number): 
     const runway = companyRunway(w, cfg, c);
     if (!c.raising) {
       const cooledDown = c.windowStartTick < 0 || tick - c.lastPitchTick >= cfg.fundraise.windowCooldownTicks;
-      if (cooledDown && tick - c.createdTick >= 1 && shouldStartRaising({ runway, ambition: founder.ambition, roundsAtStage: c.rounds > 0 && tick - c.createdTick < 63 }, cfg)) {
+      if (cooledDown && tick - c.createdTick >= 1 && shouldStartRaising({ runway, ambition: founder.ambition, raisedAtStage: c.rounds > 0, growth: c.growth7d }, cfg)) {
         c.raising = true;
         c.windowStartTick = tick;
         c.pitchesInWindow = 0;

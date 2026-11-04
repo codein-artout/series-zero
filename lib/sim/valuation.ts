@@ -70,9 +70,10 @@ export async function stepExits(w: World, cfg: GameConfig, tick: number): Promis
     const ageDays = (tick - c.createdTick) / cfg.ticks.perDay;
     if (!exitEligible({ ageDays, percentile: c.sectorPercentile, revenueAnnual: annualRevenue(c, cfg), status: c.status }, cfg)) continue;
     const p = bidProbability(c.sectorPercentile, w.season.hype, cfg);
-    for (const a of w.acquirers) {
-      const r = rng(w, tick, "exit", `${c.id}:${a.id}`);
-      if (r.next() >= p) continue;
+    const r = rng(w, tick, "exit", c.id);
+    if (r.next() >= p) continue;
+    const a = w.acquirers[r.int(w.acquirers.length)];
+    {
       const { premium, bid } = bidFromPremium(c.mark, r.logNormal(cfg.exit.premiumMu, cfg.exit.premiumSigma), cfg);
       if (bid <= 0 || w.ledger.balance(treasuryAccount(a.id)) < bid) continue;
       const e: ExitOffer = { id: nextId(w, "exit"), companyId: c.id, acquirerId: a.id, tick, expiresTick: tick + cfg.exit.offerLifetimeTicks, bid, mark: c.mark, premium, status: "open", decidedBy: null };
@@ -87,7 +88,6 @@ export async function stepExits(w: World, cfg: GameConfig, tick: number): Promis
         e.status = "declined";
         e.decidedBy = "npc";
       }
-      break;
     }
   }
 }

@@ -14,7 +14,7 @@
 - [x] 10. Company simulation
 - [x] 11. Valuation and outcome ladder
 - [x] 12. VC simulation and scoring
-- [ ] 13. Tick engine
+- [x] 13. Tick engine
 - [ ] 14. Social layer
 - [ ] 15. Safety
 - [ ] 16. Screens, desktop

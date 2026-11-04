@@ -102,6 +102,7 @@ export async function resolvePitch(w: World, cfg: GameConfig, c: Company, tick: 
         pivotCount: c.pivotCount,
         founderReputation: Math.round(founder.reputation),
         sectorHeat: Number(sectorHeatFit(growth, c.sector).toFixed(3)),
+        sectorPercentile: Number(c.sectorPercentile.toFixed(3)),
       },
       note: cleanField(note, 280),
       panel: panel.map((f) => ({ vcId: f.id, name: f.name, archetype: f.archetype, style: f.styleLine, redFlagLines: f.redFlagLines, sectorWeight: Number(f.sectorWeights[c.sector].toFixed(3)) })),

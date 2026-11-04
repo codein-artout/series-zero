@@ -451,6 +451,12 @@ export interface Season {
   shocks: Shock[];
   idSeq: number;
   checksBySector: Partial<Record<SectorId, number>>;
+  /** Notifications delivered per user for the current day (cap). */
+  notifCounts?: Record<Id, { day: number; n: number }>;
+  /** Demo Day entry credits, minted into the next season's stipend. */
+  prizeCredits?: Record<Id, number>;
+  /** Ranks at the last Demo Day (for the "move" column). */
+  lastDemoRanks?: Record<Id, number>;
 }
 
 /** Records appended during a tick (or action) that the repository must insert. */

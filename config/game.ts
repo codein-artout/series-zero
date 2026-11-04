@@ -58,7 +58,7 @@ export const defaultGameConfig = {
     space: ["climate", "ai_infra"],
   },
   sector: { penetration: 0.8, minCompanies: 5, poolClampMin: 0.5, poolClampMax: 2.0 },
-  world: { hypeGain: 0.0004 },
+  world: { hypeGain: 0.0004, minLiveCompanies: 36, restartsPerWeek: 3, restartCooldownTicks: 21 },
   hype: {
     start: 50,
     meanReversion: 0.05,
@@ -105,7 +105,7 @@ export const defaultGameConfig = {
   hiring: { minRunwayDays: 60, minGrowth: 0.05, layoffRunwayDays: 30, highRiskAt: 0.7, everyTicks: 21, minHeadcount: 1 },
   marketing: { lowRunwayDays: 45, lowRunwayCap: 1, maxLevel: 3 },
   price: { ethicsDiscountAt: 0.7, riskPremiumAt: 0.7, ethicsPremiumBelow: 0.4 },
-  fundraise: { triggerRunwayDays: 75, maxPitches: 6, pitchEveryTicks: 3, windowCooldownTicks: 9 },
+  fundraise: { triggerRunwayDays: 75, maxPitches: 6, pitchEveryTicks: 3, windowCooldownTicks: 21 },
   pitch: {
     cooldownTicks: 30,
     panelSize: 3,
@@ -172,7 +172,7 @@ export const defaultGameConfig = {
     teamMin: 0.1,
     teamMax: 1,
     startHeadcount: 3,
-    startingCash: 400_000,
+    startingCash: 300_000,
     founderShare: 0.8,
     angelShare: 0.1,
     optionPoolShare: 0.1,

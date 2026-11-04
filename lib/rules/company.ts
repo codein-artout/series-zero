@@ -100,9 +100,10 @@ export function priceTier(t: Traits, ambition: Ambition, cfg: GameConfig): Price
   return "standard";
 }
 
-export function shouldStartRaising(p: { runway: number; ambition: Ambition; roundsAtStage: boolean }, cfg: GameConfig): boolean {
+/** Raise when runway < trigger; moonshots also raise at a stage gate (no round at this stage yet, growing, runway < 2x trigger). */
+export function shouldStartRaising(p: { runway: number; ambition: Ambition; raisedAtStage: boolean; growth: number }, cfg: GameConfig): boolean {
   if (p.runway < cfg.fundraise.triggerRunwayDays) return true;
-  return p.ambition === "moonshot" && !p.roundsAtStage && p.runway < 2 * cfg.fundraise.triggerRunwayDays;
+  return p.ambition === "moonshot" && !p.raisedAtStage && p.growth > cfg.hiring.minGrowth && p.runway < 2 * cfg.fundraise.triggerRunwayDays;
 }
 
 /** pivotScore = 0.4 min(1, rejections/3) + 0.3 competitorPressure + 0.3 burnPressure */
