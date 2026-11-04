@@ -1,0 +1,396 @@
+// Series Zero data model. Mutable game entities keep their full engine state in `state` (JSON)
+// next to indexed columns used by queries. Append-only logs (ledger, marks, posts, pitches,
+// events, ticks) are separate tables. See lib/db/repo.ts.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------- Auth and users ----------
+
+model User {
+  id            String    @id
+  email         String?   @unique
+  emailVerified DateTime?
+  name          String?
+  image         String?
+  isGuest       Boolean   @default(false)
+  isAdmin       Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  accounts      Account[]
+}
+
+model Account {
+  id                String  @id
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+/// Anonymous "pitch your startup" founders waiting to be claimed by a signed-in user.
+model AnonClaim {
+  token     String   @id
+  founderId String
+  ipHash    String
+  claimedBy String?
+  createdAt DateTime @default(now())
+
+  @@index([ipHash, createdAt])
+}
+
+model RateLimit {
+  key         String
+  windowStart DateTime
+  count       Int      @default(0)
+
+  @@id([key, windowStart])
+}
+
+// ---------- World ----------
+
+model Season {
+  id        String   @id
+  number    Int      @unique
+  status    String
+  tick      Int
+  version   Int      @default(0)
+  commit    String
+  /// Secret until the season ends. Never sent to clients or LLMs.
+  seed      String
+  revealed  Boolean  @default(false)
+  state     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Tick {
+  seasonId   String
+  number     Int
+  digest     String
+  supply     BigInt
+  minted     BigInt
+  burned     BigInt
+  stabilizer Float
+  hype       Float
+  summary    Json
+  createdAt  DateTime @default(now())
+
+  @@id([seasonId, number])
+}
+
+model Sector {
+  seasonId String
+  id       String
+  pool     Float
+  state    Json
+
+  @@id([seasonId, id])
+}
+
+model Founder {
+  id         String  @id
+  ownerId    String?
+  name       String
+  status     String
+  reputation Float
+  companyId  String?
+  state      Json
+
+  @@index([ownerId])
+}
+
+model Fund {
+  id         String  @id
+  ownerId    String?
+  name       String
+  archetype  String
+  status     String
+  reputation Float
+  state      Json
+
+  @@index([ownerId])
+}
+
+model Acquirer {
+  id    String @id
+  name  String
+  state Json
+}
+
+model Company {
+  id          String @id
+  seasonId    String
+  founderId   String
+  name        String
+  sector      String
+  status      String
+  stage       String
+  mark        Float
+  score       Float
+  sectorRank  Int
+  createdTick Int
+  state       Json
+
+  @@index([seasonId, sector])
+  @@index([founderId])
+}
+
+model Idea {
+  id        String  @id
+  founderId String
+  companyId String?
+  sector    String
+  tick      Int
+  state     Json
+
+  @@index([founderId])
+}
+
+model Pitch {
+  id        String   @id
+  seasonId  String
+  tick      Int
+  companyId String
+  founderId String
+  state     Json
+  createdAt DateTime @default(now())
+
+  @@index([companyId])
+  @@index([seasonId, tick])
+}
+
+model Offer {
+  id          String @id
+  pitchId     String
+  companyId   String
+  fundId      String
+  status      String
+  tick        Int
+  expiresTick Int
+  state       Json
+
+  @@index([companyId])
+  @@index([fundId])
+}
+
+model Deal {
+  id        String @id
+  companyId String
+  fundId    String
+  status    String
+  tick      Int
+  state     Json
+
+  @@index([fundId])
+  @@index([companyId])
+}
+
+model ExitOffer {
+  id         String @id
+  companyId  String
+  acquirerId String
+  status     String
+  tick       Int
+  state      Json
+
+  @@index([companyId])
+}
+
+model Decision {
+  id          String @id
+  userId      String
+  kind        String
+  status      String
+  refId       String
+  expiresTick Int
+  state       Json
+
+  @@index([userId, status])
+}
+
+model WorldEvent {
+  id       String @id
+  seasonId String
+  tick     Int
+  sector   String
+  kind     String
+  headline String
+  state    Json
+
+  @@index([seasonId, tick])
+}
+
+model Post {
+  id         String   @id
+  seasonId   String
+  tick       Int
+  kind       String
+  authorType String
+  authorId   String?
+  companyId  String?
+  fundId     String?
+  text       String
+  hidden     Boolean  @default(false)
+  cosigns    Int      @default(0)
+  roasts     Int      @default(0)
+  state      Json
+  createdAt  DateTime @default(now())
+
+  @@index([seasonId, tick])
+  @@index([companyId])
+}
+
+model PostReaction {
+  id        String   @id
+  postId    String
+  userId    String
+  kind      String
+  createdAt DateTime @default(now())
+
+  @@unique([postId, userId, kind])
+  @@index([userId, createdAt])
+}
+
+model Notification {
+  id        String   @id
+  userId    String
+  tick      Int
+  type      String
+  text      String
+  href      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model PushLog {
+  id        String   @id
+  userId    String
+  text      String
+  createdAt DateTime @default(now())
+}
+
+model Feud {
+  id    String @id
+  kind  String
+  a     String
+  b     String
+  state Json
+}
+
+model Draft {
+  id         String    @id
+  agentId    String
+  agentType  String
+  ownerId    String?
+  status     String
+  text       String
+  tick       Int
+  createdAt  DateTime  @default(now())
+  decidedAt  DateTime?
+
+  @@index([ownerId, status])
+}
+
+/// LogOnlySocialProvider output. Nothing is ever posted outside the app.
+model SocialLog {
+  id        String   @id
+  draftId   String
+  agentId   String
+  text      String
+  createdAt DateTime @default(now())
+}
+
+model Report {
+  id         String   @id
+  reporterId String
+  targetType String
+  targetId   String
+  reason     String
+  note       String
+  status     String   @default("open")
+  createdAt  DateTime @default(now())
+
+  @@unique([reporterId, targetType, targetId])
+  @@index([targetType, targetId])
+}
+
+model Card {
+  id        String    @id
+  kind      String
+  refId     String
+  ownerId   String?
+  data      Json
+  deletedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([refId])
+}
+
+model DemoDay {
+  id       String @id
+  seasonId String
+  number   Int
+  tick     Int
+  state    Json
+
+  @@index([seasonId, number])
+}
+
+model Mark {
+  companyId String
+  tick      Int
+  seasonId  String
+  sector    String
+  mark      Float
+
+  @@id([companyId, seasonId, tick])
+  @@index([seasonId, sector, tick])
+}
+
+// ---------- Ledger ----------
+
+model LedgerAccount {
+  id      String @id
+  balance BigInt
+}
+
+model LedgerEntry {
+  seq      BigInt @id
+  seasonId String
+  tick     Int
+  from     String
+  to       String
+  amount   BigInt
+  reason   String
+  memo     String?
+
+  @@index([seasonId, tick])
+  @@index([from])
+  @@index([to])
+}
+
+model LedgerTotals {
+  id     String @id
+  minted BigInt
+  burned BigInt
+  seq    BigInt
+}

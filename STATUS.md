@@ -6,7 +6,7 @@
 - [x] 2. Mockup rendering
 - [x] 3. Design system
 - [x] 4. Config + RNG + ledger
-- [ ] 5. Data model
+- [x] 5. Data model
 - [ ] 6. Founder and VC agents
 - [ ] 7. World and news
 - [ ] 8. Pitch pipeline
