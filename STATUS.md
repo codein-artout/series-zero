@@ -8,7 +8,7 @@
 - [x] 4. Config + RNG + ledger
 - [x] 5. Data model
 - [x] 6. Founder and VC agents
-- [ ] 7. World and news
+- [x] 7. World and news
 - [ ] 8. Pitch pipeline
 - [ ] 9. Term sheets and negotiation
 - [ ] 10. Company simulation
