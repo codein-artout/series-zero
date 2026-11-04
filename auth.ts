@@ -2,11 +2,14 @@
  * Auth.js v5: email magic link (the link is printed to the server console in dev; no mail is sent)
  * and a one-click guest account. JWT sessions.
  */
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { prisma } from "@/lib/db/client";
 import { szAdapter } from "@/lib/server/auth-adapter";
+import { cookies } from "next/headers";
+
+const DEMO_LOGIN = process.env.NODE_ENV !== "production" || process.env.SZ_DEMO_LOGIN === "1";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: szAdapter(),
@@ -31,14 +34,40 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       id: "guest",
       name: "Guest",
       credentials: {},
-      async authorize() {
+      async authorize(_creds, req) {
         const db = await prisma();
         const id = `user_${randomUUID()}`;
-        const u = await db.user.create({ data: { id, name: `Guest ${id.slice(5, 9).toUpperCase()}`, isGuest: true } });
+        const ip = (req?.headers?.get("x-forwarded-for") ?? "local").split(",")[0].trim();
+        const ipHash = createHash("sha256").update(`${process.env.AUTH_SECRET ?? "sz"}|${ip}`).digest("hex").slice(0, 32);
+        const u = await db.user.create({ data: { id, name: `Guest ${id.slice(5, 9).toUpperCase()}`, isGuest: true, ipHash } });
         return { id: u.id, name: u.name };
       },
     }),
+    ...(DEMO_LOGIN
+      ? [
+          Credentials({
+            id: "demo",
+            name: "Demo coach",
+            credentials: {},
+            async authorize() {
+              const db = await prisma();
+              const u = await db.user.findUnique({ where: { id: "user_demo" } });
+              return u ? { id: u.id, name: u.name, email: u.email } : null;
+            },
+          }),
+        ]
+      : []),
   ],
+  events: {
+    async signIn({ user }) {
+      // Anonymous hook founders from this browser move to the signed-in user.
+      const tok = (await cookies()).get("sz_anon")?.value;
+      if (tok && user.id) {
+        const { claimAnonFounders } = await import("@/lib/server/actions");
+        await claimAnonFounders(user.id, tok).catch(() => 0);
+      }
+    },
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user?.id) token.uid = user.id;

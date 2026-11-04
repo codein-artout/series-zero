@@ -17,7 +17,7 @@
 - [x] 13. Tick engine
 - [x] 14. Social layer
 - [x] 15. Safety
-- [ ] 16. Screens, desktop
+- [x] 16. Screens, desktop
 - [ ] 17. Phone layouts and shareable cards
 - [ ] 18. Seed script
 - [ ] 19. Tests
